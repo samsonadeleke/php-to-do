@@ -10,4 +10,9 @@
 # - The application should load the tasks from the persistent storage when it starts.
 # - When user clicks on a checkbox for a task, it should be marked as completed.
 
+require 'database/Connection.php';
+
+$connection = Connection::getInstance();
+$connection->connect();
+
 require 'view/todo.html.php';

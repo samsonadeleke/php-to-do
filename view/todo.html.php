@@ -15,6 +15,8 @@
                 <div class="col-md-12">
                     <div class="card px-3">
                         <div class="card-body">
+                            <h3>Hi <?php echo $user['username']; ?>,</h3>
+                            &nbsp; <a href="/logout.php" style="float: right">Logout</a>
                             <h4 class="card-title">Awesome Todo list</h4>
                             <div class="add-items d-flex"> <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?"> <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button> </div>
                             <div class="list-wrapper">

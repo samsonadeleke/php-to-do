@@ -10,7 +10,15 @@
 # - The application should load the tasks from the persistent storage when it starts.
 # - When user clicks on a checkbox for a task, it should be marked as completed.
 
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+}
+
 require 'database/Connection.php';
+
+$user = $_SESSION['user'];
 
 $connection = Connection::getInstance();
 $connection->connect();

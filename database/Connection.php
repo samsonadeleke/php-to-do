@@ -2,7 +2,7 @@
 
 class Connection
 {
-  private ?mysqli $conn = null;
+  private ?PDO $conn = null;
 
   public function __construct(
     private readonly string $host,
@@ -13,52 +13,27 @@ class Connection
   ) {
   }
 
-  public function connect()
+  public function connect(): PDO
   {
-    $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database, $this->port);
+    $dsn = "mysql:host={$this->host};dbname={$this->database}";
 
-    if ($this->conn->connect_error) {
-      die("Connection failed: " . $this->conn->connect_error);
+    try {
+        $this->conn = new PDO($dsn, $this->user, $this->password);
+        $this->conn->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        return $this->conn;
+    } catch(PDOException $e) {
+        throw new ErrorException("connection failed: " . $e->getMessage());
     }
-  }
-
-  public function close()
-  {
-    $this->conn->close();
-  }
-
-  public function query($sql)
-  {
-    $result = $this->conn->query($sql);
-    if ($result === false) {
-      die("Query failed: " . $this->conn->error);
-    }
-    return $result;
-  }
-
-  public function fetchAll($result)
-  {
-    return $result->fetch_all(MYSQLI_ASSOC);
-  }
-  
-  public function fetch($result)
-  {
-    return $result->fetch_assoc();
-  }
-  
-  public function escape($string)
-  {
-    return $this->conn->real_escape_string($string);
   }
 
   public static function getInstance(): self
   {
-    $username = 'sql8770984';
+    $username = 'root';
     $password = '';
-    $host = 'sql8.freesqldatabase.com';
-    $database = 'sql8770984';
+    $host = 'localhost';
+    $database = 'myfirstwebsite';
     $port = 3306;
-    $password = 'cYw9J6l4lQ';
 
     return new self($host, $username, $password, $database, $port);
   }

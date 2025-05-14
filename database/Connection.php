@@ -32,7 +32,7 @@ class Connection
     $username = 'root';
     $password = '';
     $host = 'localhost';
-    $database = 'myfirstwebsite';
+    $database = 'todo';
     $port = 3306;
 
     return new self($host, $username, $password, $database, $port);

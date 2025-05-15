@@ -41,12 +41,12 @@
                                                             name="todo[]" 
                                                             value="<?php echo $task['id']; ?>"
                                                             <?php echo $task['done'] ? 'checked' : ''; ?>
-                                                        /> 
+                                                        />
                                                         <?php echo $task['task']; ?> <i class="input-helper"></i>
                                                     </label>
                                                 </div> 
-                                                <i class="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
+                                                <a href="delete_todo.php?task=<?php echo $task["id"] ?>" style="float: right"> <i class="remove mdi mdi-close-circle-outline"></i> Delete </a>
+                                                </li>
                                         <?php endforeach ?>
                                     </ul>
 

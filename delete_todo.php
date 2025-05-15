@@ -1,6 +1,4 @@
 <?php
-
-
 if (isset($_GET['task'])) {
     $task = $_GET['task'];
     // var_dump($task); exit;

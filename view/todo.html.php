@@ -27,28 +27,31 @@
                                     <button class="add btn btn-primary font-weight-bold todo-list-add-btn" type="submit">Add</button>
                                 </div>
                             </form>
-
+ 
                             <div class="list-wrapper">
-                                <ul class="d-flex flex-column-reverse todo-list">
-                                    <li>
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> For what reason would it be advisable. <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                                    </li>
-                                    <li class="completed">
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox" checked=""> For what reason would it be advisable for me to think. <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                                    </li>
-                                    <li>
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> it be advisable for me to think about business content? <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                                    </li>
-                                    <li>
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> Print Statements all <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                                    </li>
-                                    <li class="completed">
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                                    </li>
-                                    <li>
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                                    </li>
-                                </ul>
+                                <form method="post" action="save_todos.php">
+                                    <ul id="todo_container" class="d-flex flex-column-reverse todo-list">
+                                        <?php foreach($tasks as $task):?>
+                                            <li class="completed">
+                                                <div class="form-check"> 
+                                                    <label class="form-check-label">
+                                                        <input 
+                                                            class="checkbox" 
+                                                            type="checkbox" 
+                                                            name="todo[]" 
+                                                            value="<?php echo $task['id']; ?>"
+                                                            <?php echo $task['done'] ? 'checked' : ''; ?>
+                                                        /> 
+                                                        <?php echo $task['task']; ?> <i class="input-helper"></i>
+                                                    </label>
+                                                </div> 
+                                                <i class="remove mdi mdi-close-circle-outline"></i>
+                                            </li>
+                                        <?php endforeach ?>
+                                    </ul>
+
+                                    <button class="add btn btn-primary font-weight-bold todo-list-add-btn" type="submit">Save</button>
+                                </form>
                             </div>
                         </div>
                     </div>
